@@ -144,3 +144,70 @@ print('I just want to write a %')
 print('Hello,{0},sorce is improved with {1:.1f}%'.format('your',12.334))
 
 
+#列表
+classmates=['Michael','Bob','Tracy']
+print(classmates,'\n',len(classmates),'\n',classmates[0],'\n',classmates[-1],'\n',classmates[-2])
+#访问越界的东西会报错 正负均适用
+#追加元素
+classmates.append('Adam')
+print(classmates)
+#删除尾部元素,指定位置元素
+classmates.pop()
+print(classmates)
+classmates.pop(2)
+print(classmates)
+classmates.append('Tracy')
+L= [1,24,'Apple']
+x=0
+while x<3:
+    print(L[x])
+    x+=1
+#可以是多维的
+p= [24,'python',[2**4,'test']]
+print(p[2][0])
+
+#元组——定义时元素即确定，不可再进行增删改变了
+classmate=('Michael','Bob','Tracy')
+#定义只有一个元素的元组
+t=(1,)
+#“可变”的tuple 仅有list中元素可变
+tuples = (1,2,5,[6,90])
+
+#条件判断
+age = 18
+if  age >=18:
+    print('your age is:',age)
+    print('adult')
+elif age>=6:
+    print('your age is :',age)
+    print('teenager')
+else:
+    print('your age is :',age)
+    print('kid')
+
+#读取用户输入input读入的是字符串
+
+#因为不想每次测试都输入，故注释掉，代码有效
+'''
+s = input('brith:')
+birth = int(s)
+if birth >2000:
+    print('00 before')
+else:
+    print('00 after')
+'''
+
+#循环
+#计算1到100的整数之和
+sums = 0
+lists = list(range(51))
+print(lists)
+for x in lists:
+    if x == 2:
+        continue;
+    sums = sums+x
+
+    if x >=10:
+        break
+print(sums)
+
