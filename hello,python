@@ -211,3 +211,13 @@ for x in lists:
         break
 print(sums)
 
+
+#字典 越界报错
+d = {'Micheal':95,'Bob':75,'tracy':85}
+print(d['tracy'])
+d['Adam']=67;
+print(d)
+#删除
+d.pop('Bob')
+print(d)
+
