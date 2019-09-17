@@ -1,0 +1,123 @@
+
+#内置函数
+#求绝对值
+print(abs(-10))
+print(max(23,96))
+print(min(45,9))
+#z转换函数
+print(int('1234'))
+print(bool(3))
+print(str(1234))
+print(hex(1000))
+
+#自定义函数
+def my_abs(x):
+    if x >=0:
+        return x
+    else:
+        return -x
+
+print(my_abs(-99))
+
+from testabs import my_abs1
+print(my_abs1(-97))
+
+#空函数
+def nop():
+    pass
+
+#内置数据类型检查函数isinstance()
+def my_abs2(x):
+    if not isinstance(x,(int,float)):
+        raise TypeError('bad operal type')
+    elif x>=0:
+        return x
+    else:
+        return -x
+
+#print(my_abs2('A'))
+
+#返回多个值
+import math
+
+def move(x,y,step,angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx,ny
+
+x,y=move(100,100,60,math.pi/6)
+print(x,y)
+r=move(100,100,60)
+print(r)
+#实际上返回的是一个元组
+
+def power(x,n):
+    s=1
+    while n >0:
+        s=s*x
+        n=n-1
+    return s
+
+print(power(5,3))
+
+def power1(x,n=2):
+    s=1
+    while n>0:
+        s=s*x
+        n=n-1
+    return s
+#默认参数，当与默认参数不同时才输入参数
+print(power1(4))
+print(power1(4,3))
+
+def enroll(name,gender):
+    print('name:',name,end='\t')
+    print('gender',gender)
+
+enroll('Sarah','F')
+
+def enroll(name,gender,age=6,city='beijing'):
+    print('name:', name)
+    print('gender:', gender)
+    print('age:', age)
+    print('city:', city)
+
+enroll('Sarah','F')
+enroll('Tracy','M',city='Shanghai')
+
+def add_end(L = []):
+    L.append('END')
+    return L
+
+print(add_end([1,2,3]))
+
+#Python函数在定义的时候，默认参数L的值就被计算出来了，即[]，因为默认参数L也是一个变量，它指向对象[]，
+# 每次调用该函数，如果改变了L的内容，则下次调用时，默认参数的内容就变了，不再是函数定义时的[]了。
+#可以用None这个不变对象来实现：
+def add_end(L=None):
+    if L == None:
+        L=[]
+    L.append('END')
+    return L
+print(add_end([1,2,3]))
+
+#传入可变个参数
+def calla(numbers):
+    sum=0
+    for n in numbers:
+        sum = sum+n
+    return sum
+
+print(calla([1,2,3,4,5,6,7,8,9]))
+print(calla((1,2,3,4,5,6,7,8,9)))
+
+def callc(*numbers):
+    sum=0
+    for n in numbers:
+        sum = sum+n
+    return sum
+
+nums=[1,2,3,4,5]
+num=(1,2,3,4)
+print(callc(*nums))
+print(callc(*num))
