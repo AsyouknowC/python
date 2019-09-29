@@ -1,0 +1,128 @@
+'''
+students = ['学号1','学号2'……]
+student =  ['学号','姓名','性别','房间号','电话']
+name_of_student = {'学号':'姓名'}
+sex_of_student = {'学号':'性别'}
+room_of_student = {'学号':'房间号'}
+phone_of_student = {'学号':'电话'}
+'''
+students = []
+name_of_student = {}
+sex_of_student = {}
+room_of_student = {}
+phone_of_student = {}
+
+
+def welcome():
+    print('****************************************')
+    print('欢迎使用[宿舍管理系统]')
+    print('1 .查找学生')
+    print('2 .新增学生')
+    print('3 .显示全部')
+    print('0 .退出系统')
+    print('****************************************')
+
+
+def printselect(a):
+    print('________________________________________')
+    if a == 0:
+        print('退出系统')
+    elif a == 1:
+        print('查找学生')
+    elif a == 2:
+        print('新增学生')
+    elif a == 3:
+        print('显示全部')
+    else:
+        print('无效选择，请重新选择[按enter键继续]')
+        input()
+
+
+def findstudent(a):
+    tabletitle()
+    n = str(a)
+    print(n, '\t', name_of_student[n], '\t', sex_of_student[n], '\t', room_of_student[n], '\t', phone_of_student[n])
+
+
+def addstudent():
+    temp = input('请输入学号：')
+    number = int(temp)
+    students.append(temp)
+    name = input('请输入姓名：')
+    name_of_student[temp] = name
+    sex = input('请输入性别：')
+    sex_of_student[temp] = sex
+    temproom = input('请输入房间号：')
+    room = int(temproom)
+    room_of_student[temp] = room
+    tempphone = input('请输入电话：')
+    phone = int(tempphone)
+    phone_of_student[temp] = phone
+    print('添加', number, '成功')
+    return 0
+
+
+def printall():
+    tabletitle()
+    for n in students:
+        print(n, '\t', name_of_student[n], '\t', sex_of_student[n], '\t', room_of_student[n], '\t', phone_of_student[n])
+
+
+def tabletitle():
+    print('学号\t姓名\t性别\t房间号\t电话')
+    print('========================================')
+
+
+def main():
+    num_of_student = 0
+    welcome()
+    temp = input('\n请选择希望执行的操作：')
+    select = int(temp)
+    printselect(select)
+    print(students)
+    print(name_of_student)
+    print(sex_of_student)
+    print(room_of_student)
+    print(phone_of_student)
+    if select == 0:
+        pass
+    elif select == 1:
+        temp = input('请输入要搜索的学号：')
+        number = int(temp)
+        findstudent(number)
+    elif select == 2:
+        addstudent()
+        num_of_student += 1
+    elif select == 3:
+        printall()
+    else:
+        pass
+
+
+run = 1
+while run == 1:
+    num_of_student = 0
+    welcome()
+    temp = input('\n请选择希望执行的操作：')
+    select = int(temp)
+    printselect(select)
+    '''
+    print(students)
+    print(name_of_student)
+    print(sex_of_student)
+    print(room_of_student)
+    print(phone_of_student)
+    '''
+    if select == 0:
+        run = 0
+    elif select == 1:
+        temp = input('请输入要搜索的学号：')
+        number = int(temp)
+        findstudent(number)
+    elif select == 2:
+        addstudent()
+        num_of_student += 1
+    elif select == 3:
+        printall()
+    else:
+        pass
