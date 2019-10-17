@@ -1,0 +1,66 @@
+
+from sklearn import datasets
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def train_linear_regression(x:list,y:list):
+    mean_x = x.mean()
+    sum_x = 0
+    sum_double = 0
+    sum_dif = 0
+    for i in range(len(x)):
+        sum_dif +=(x[i] - mean_x)*y[i]
+        sum_x += x[i]
+        sum_double += x[i]*x[i]
+    
+    w = sum_dif /(sum_double - ((sum_x*sum_x)/len(x)))
+    sum_wy = 0
+    for i in range(len(x)):
+        sum_wy += (y[i] - w*x[i])
+    b = sum_wy / len(x)
+    
+    return w,b
+
+
+boston = datasets.load_boston()
+data_of_boston = boston.data
+target_of_boston = boston.target
+#提取x值即住宅平均房间数
+data = pd.DataFrame(data_of_boston)
+#x=RM住宅平均房间数 属性5 y=target
+x_train = data[5][:-100]
+y_train = target_of_boston[:-100]
+
+x_test = data[5][-100:]
+y_test = target_of_boston[100:]
+
+
+temp = train_linear_regression(x_train,y_train)
+w = temp[0]
+b = temp[1]
+print('w=',w,'\nb=',b)
+
+print(len(data[5]))
+
+y_pred = []
+for x in x_test:
+    tmp = x*w + b
+    pred =(x,tmp)
+    y_pred.append(pred)
+    
+print('blue: train\ngreen: test\nblack: predict')
+#预测值
+for dot in y_pred:
+    plt.scatter(dot[0], dot[1],c='#000F00', alpha=1.0)
+#所有实际值
+for i in range(len(data[5])):
+    if i <=405 :
+        plt.scatter(data[5][i], target_of_boston[i], c='#0000FF', alpha=0.2)#训练数据
+    else:
+        plt.scatter(data[5][i], target_of_boston[i], c='#00FF00', alpha=0.5)#测试数据
+    
+x_line = np.linspace(3,10,10)
+y_line = w*x_line + b
+plt.plot(x_line,y_line,'r')
+plt.show()
